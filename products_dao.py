@@ -28,11 +28,11 @@ def insert_new_product(connection, product):
 
     query = (
         "INSERT INTO products (name, uom_id, price_per_unit) "
-        "VALUES (%s, %s, %s)"
+        "VALUES ( %s, %s, %s)"
     )
 
     # FIX — standardized key names
-    data = (product['name'], product['uom_id'], product['price_per_unit'])
+    data = ( product['name'], product['uom_id'], product['price_per_unit'])
 
     cursor.execute(query, data)
     connection.commit()
