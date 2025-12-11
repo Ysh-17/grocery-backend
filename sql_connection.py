@@ -20,9 +20,9 @@ def get_sql_connection():
     try:
         connection = mysql.connector.connect(
             host='sql12.freesqldatabase.com',
-            user='sql12810410',
-            password='WmIEWQ9xBg',
-            database='sql12810410',
+            user='sql12811464',
+            password=' 9cSTGfbCy7',
+            database='sql12811464',
             port=3306,
             connection_timeout=30,
             autocommit=True,        # prevents idle-lock issues
