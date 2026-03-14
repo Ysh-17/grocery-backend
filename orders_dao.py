@@ -6,7 +6,7 @@ def insert_order(connection, order):
     order_query = (
         "INSERT INTO orders "
         "(customer_name, total, datetime) "
-        "VALUES (%s, %s, %s)"
+        "VALUES (%s, %s, %s) RETURNING order_id"
     )
     order_data = (
         order['customer_name'],
@@ -15,7 +15,7 @@ def insert_order(connection, order):
     )
     cursor.execute(order_query, order_data)
     order_id = cursor.fetchone()[0]
-    
+
     order_detail_query = (
         "INSERT INTO order_details "
         "(order_id, product_id, quantity, total_price) "
@@ -66,7 +66,7 @@ def get_all_orders(connection):
             'order_id': order_id,
             'customer_name': customer_name,
             'total': total,
-            'datetime': dt
+            'datetime': str(dt)
         })
     cursor.close()
     for order in orders:
