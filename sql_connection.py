@@ -1,4 +1,5 @@
 import psycopg2
+import os
 
 connection = None
 
@@ -8,13 +9,8 @@ def get_sql_connection():
         return connection
     
     print("Opening new PostgreSQL connection...")
-    connection = psycopg2.connect(
-        host='aws-1-ap-south-1.pooler.supabase.com',
-        user='postgres.yoblktyuymaqboyzvrxb',
-        password='Grocerystore@22',
-        database='postgres',
-        port=5432
-    )
+    database_url = os.environ.get('DATABASE_URL')
+    connection = psycopg2.connect(database_url)
     connection.autocommit = True
     print("Connection established.")
     return connection
